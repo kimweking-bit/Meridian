@@ -1,0 +1,493 @@
+/* =========================
+   Navbar Container
+========================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  display: flex; /* Flex layout for logo + nav links */
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  background: #000; /* Pure black navbar */
+  z-index: 999;
+  transition: all 0.4s ease; /* Smooth animation */
+  backdrop-filter: blur(5px); /* Subtle frosted effect */
+}
+
+/* Shrink & shadow effect on scroll */
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  padding: 0.7rem 3rem;
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.2); /* Soft gold glow */
+}
+
+/* =========================
+   Logo Styling
+========================= */
+.logo {
+  font-family: 'Cinzel', serif; /* Elegant luxury serif font */
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.15em; /* Wide spacing for elegance */
+  color: #FFD700; /* Rich gold color */
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  color: #fff176; /* Soft gold highlight on hover */
+}
+
+/* =========================
+   Navigation Links
+========================= */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* Spacing between links */
+}
+
+.nav-links a {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em; /* Slight spacing for luxury feel */
+  color: #FFD700; /* Gold links */
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Gold underline animation */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #FFD700;
+  bottom: -5px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #fff; /* White on hover */
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5); /* Gold glow */
+}
+
+.nav-links a:hover::after {
+  width: 100%; /* Animate underline across text */
+}
+
+/* =========================
+   Dropdown Menu
+========================= */
+.dropdown {
+  position: relative;
+}
+
+.dropdown .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg); /* Rotate arrow on hover */
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #111; /* Dark dropdown */
+  min-width: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px); /* Slight slide down animation */
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2); /* Subtle gold glow */
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 0.8rem 1rem;
+  color: #FFD700; /* Gold dropdown text */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background: #222; /* Slightly lighter black */
+  color: #fff; /* Highlight on hover */
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Smooth slide up */
+}
+
+/* =========================
+   Hamburger Menu (Mobile)
+========================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: #FFD700; /* Gold lines */
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Animate hamburger to X */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* =========================
+   Responsive Mobile Menu
+========================= */
+@media (max-width: 992px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden by default */
+    height: 100vh;
+    width: 250px;
+    background: #000; /* Black mobile menu */
+    flex-direction: column;
+    padding: 5rem 2rem;
+    gap: 1.5rem;
+    transition: right 0.4s ease;
+  }
+
+  .nav-links.active {
+    right: 0; /* Slide in menu */
+  }
+
+  .hamburger {
+    display: flex; /* Show hamburger icon */
+  }
+
+  /* Keep dropdown expanded on mobile */
+  .dropdown:hover .dropdown-content {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+:root {
+  --color-dark: #111;
+  --color-dark-alt: #000000;
+  --color-gold: #FFD700;
+  --color-gold-light: #FFEA70;
+  --color-white: #fff;
+  --color-white-soft: #ddd;
+
+  --spacing: 1.5rem;
+  --radius: 12px;
+  --shadow-glow: 0 4px 20px rgba(255, 215, 0, 0.15);
+  --transition-speed: 0.4s;
+  --font-main: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-dark);
+  color: var(--color-white-soft);
+  line-height: 1.6;
+}
+
+img { max-width: 100%; display: block; border-radius: var(--radius); }
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 6rem 2rem 4rem 2rem;
+  background: linear-gradient(to bottom, rgba(17,17,17,0.9), rgba(17,17,17,0.95)),
+              url('https://source.unsplash.com/1920x800/?luxury-hotel,interior') center/cover no-repeat;
+  color: var(--color-white);
+}
+
+.hero h1 {
+  font-family: var(--font-main);
+  font-size: 3rem;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.hero p { font-size: 1.25rem; opacity: 0.8; }
+
+/* SUITE SELECTION */
+.suite-selection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4rem 2rem;
+}
+
+.suite-card {
+  background-color: var(--color-dark-alt);
+  border-radius: var(--radius);
+  overflow: hidden;
+  width: 300px;
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  position: relative;
+}
+
+.suite-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(255, 215, 0, 0.25); }
+.suite-card.selected { border: 2px solid var(--color-gold); box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3); }
+
+.suite-card-content { padding: 1.5rem; text-align: center; }
+.suite-card-content h3 { font-family: var(--font-main); color: var(--color-gold); margin-bottom: 0.5rem; }
+.suite-card-content p { font-size: 0.95rem; opacity: 0.85; margin-bottom: 1rem; }
+.suite-card-content .price { font-weight: bold; font-size: 1.1rem; }
+
+/* BOOKING FORM */
+.booking-form {
+  max-width: 600px;
+  margin: 0 auto 4rem auto;
+  background-color: var(--color-dark-alt);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-glow);
+  padding: 2rem;
+  background-color: #000000;
+}
+
+.booking-form h2 { font-family: var(--font-main); color: var(--color-gold); text-align: center; margin-bottom: 2rem; }
+.booking-form label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--color-white); }
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+  border: none;
+  font-weight: 400px;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  box-shadow: var(--shadow-glow);
+  transition: box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+.booking-form input:focus,
+.booking-form select:focus { outline: none; box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); transform: translateY(-2px); }
+
+/* PAYMENT */
+.payment-section {
+  max-width: 600px;
+  margin: 0 auto 6rem auto;
+  background-color: var(--color-dark-alt);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-glow);
+  padding: 2rem;
+  background-color:#111;
+  font-weight: 400px;
+}
+
+.payment-section h2 { font-family: var(--font-main); color: var(--color-gold); text-align: center; margin-bottom: 2rem; }
+
+.payment-logos {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.payment-logos img {
+  width: 60px;
+  opacity: 0.8;
+  transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  border-radius: var(--radius);
+}
+
+.payment-logos img:hover { transform: translateY(-4px); opacity: 1; box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3); }
+
+.payment-section input { margin-bottom: 1.5rem; }
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-dark);
+  background: var(--color-gold);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .suite-selection { flex-direction: column; align-items: center; }
+}
+
+/* Selected Suite Summary */
+.suite-summary {
+  background-color: #111;
+  color: #FFD700;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(255,215,0,0.15);
+  margin-bottom: 1.5rem;
+}
+.suite-summary span {
+  color: #ddd;
+  font-weight: 500;
+}
+/* =========================
+   FOOTER CSS
+========================= */
+.luxury-footer {
+  background: #050505;
+  color: #ccc;
+  padding: 80px 40px 30px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 50px;
+}
+
+/* Brand */
+.footer-brand h2 {
+  color: #FFD700;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+  font-family: 'Cinzel', serif;
+}
+
+.footer-brand p {
+  line-height: 1.7;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+/* Section Titles */
+.footer-section h4 {
+  color: #fff;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* List Styling */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.footer-section li i {
+  color: #FFD700;
+  font-size: 1.1rem;
+}
+
+/* Social Icons */
+.footer-socials {
+  display: flex;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.footer-socials a {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFD700;
+  text-decoration: none;
+  transition: all 0.35s ease;
+}
+
+.footer-socials a:hover {
+  background: #FFD700;
+  color: #000;
+  transform: translateY(-4px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  margin-top: 60px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 800px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .footer-socials {
+    justify-content: flex-start;
+  }
+}
